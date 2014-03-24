@@ -10,6 +10,7 @@ Original -> http://ukoreh.github.io -> OS R&D
 ![](https://raw.github.com/ukoreh/yaos/master/3.png)
 
 ### Handy Info
+```sh
 // create an empty floppy image of 1.44 MB 
 dd if=/dev/zero of=floppy-image.img bs=512 count=2880
 
@@ -58,3 +59,4 @@ now on command line:
 o - bochs -q (will start it in debug mode because this is how you compiled it) 
 o - break 0x0000:0x7c00 (put a breakpoint at the moment when BIOS starts loading your bootloader) 
 o - c (continue simulation and let bochs load your brand new bootloader)
+```
