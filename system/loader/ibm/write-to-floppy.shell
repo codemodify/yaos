@@ -1,0 +1,10 @@
+# !/bin/sh
+
+mdDevice=`mdconfig -a -t vnode -f floppy-image.img`
+
+if [ -e loader.bin ]
+then
+    cat loader.bin > /dev/$mdDevice
+fi
+
+mdconfig -d -u /dev/$mdDevice

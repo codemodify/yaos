@@ -1,0 +1,6 @@
+# !/bin/sh
+
+as loader.asm -o loader.obj
+ld -o loader.bin -Ttext 0x0 --oformat binary loader.obj
+
+rm loader.obj

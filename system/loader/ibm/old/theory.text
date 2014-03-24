@@ -1,0 +1,104 @@
+
+8086 CPU registers
+------------------------------------------
+
+ --------------------------------------------------------------------------------
+|              al                       |                 al                     | = ax  \
+ --------------------------------------------------------------------------------         |
+|              bh                       |                 bl                     | = bx   | general
+ --------------------------------------------------------------------------------         | regsters
+|              ch                       |                 cl                     | = cx   |
+ --------------------------------------------------------------------------------         |
+|              dh                       |                 dl                     | = dx  /
+ --------------------------------------------------------------------------------
+
+
+ -------------------------------------------------------------------------------
+|                                       SI                                      | \ index
+ -------------------------------------------------------------------------------  | regsters
+|                                       DI                                      | /
+ -------------------------------------------------------------------------------
+                                                                                       
+                                                                                
+ -------------------------------------------------------------------------------
+|                                       BP                                      | \ pointer
+ -------------------------------------------------------------------------------  | regsters
+|                                       SP                                      | /
+ -------------------------------------------------------------------------------
+
+
+ -------------------------------------------------------------------------------
+|                                       IP                                      | \ pointer
+ -------------------------------------------------------------------------------  | regsters
+|    |    |    |    | OF | DF | IF | TF | SF | ZF |    | AF |    | PF |    | CF | /
+ -------------------------------------------------------------------------------
+
+ 
+  --------------------------------------------------------------------------------
+|                                       CS                                       | \
+ --------------------------------------------------------------------------------   |
+|                                       DS                                       |  | segment
+ --------------------------------------------------------------------------------   | regsters
+|                                       SS                                       |  |
+ --------------------------------------------------------------------------------   |
+|                                       ES                                       | /
+ --------------------------------------------------------------------------------
+
+ 
+AX - accumulator
+    1. Generates shortest machine code                  
+    2. Arithmetic, logic and data transfer              
+    3. One number must be in AL or AX                   
+    4. Multiplication & Division                        
+    5. Input & Output                                   
+
+BX - the base address register
+
+CX - the count register
+   1. Iterative code segments using the LOOP instruction
+   2. Repetitive operations on strings with the REP command
+   3. Count (in CL) of bits to shift and rotate
+
+DX - the data register
+   1. DX:AX concatenated into 32-bit register for some MUL and DIV operations
+   2. Specifying ports in some IN and OUT operations
+
+SI - source index register
+   1. Can be used for pointer addressing of data
+   2. Used as source in some string processing instructions
+   3. Offset address relative to DS
+
+DI - destination index register
+   1. Can be used for pointer addressing of data
+   2. Used as destination in some string processing instructions
+   3. Offset address relative to ES
+
+BP - base pointer
+   1. Primarily used to access parameters passed via the stack
+   2. Offset address relative to SS
+
+SP - stack pointer:
+   1. Always points to top item on the stack
+   2. Offset address relative to SS
+   3. Always points to word (byte at even address)
+   4. An empty stack will had SP = FFFEh
+
+CS - points at the segment containing the current program.
+DS - generally points at segment where variables are defined.
+ES - extra segment register, it's up to a coder to define its usage.
+SS - points at the segment containing the stack. 
+
+IP - the instruction pointer:
+   1. Always points to next instruction to be executed
+   2. Offset address relative to CS
+
+Flags Register
+# Carry Flag (CF) - this flag is set to 1 when there is an unsigned overflow. For example when you add bytes 255 + 1 (result is not in range 0...255). When there is no overflow this flag is set to 0.
+# Parity Flag (PF) - this flag is set to 1 when there is even number of one bits in result, and to 0 when there is odd number of one bits. 
+# Auxiliary Flag (AF) - set to 1 when there is an unsigned overflow for low nibble (4 bits).
+# Zero Flag (ZF) - set to 1 when result is zero. For non-zero result this flag is set to 0.
+# Sign Flag (SF) - set to 1 when result is negative. When result is positive it is set to 0. (This flag takes the value of the most significant bit.)
+# Trap Flag (TF) - Used for on-chip debugging.
+# Interrupt enable Flag (IF) - when this flag is set to 1 CPU reacts to interrupts from external devices.
+# Direction Flag (DF) - this flag is used by some instructions to process data chains, when this flag is set to 0 - the processing is done forward, when this flag is set to 1 the processing is done backward.
+# Overflow Flag (OF) - set to 1 when there is a signed overflow. For example, when you add bytes 100 + 50 (result is not in range -128...127). 
